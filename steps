@@ -1,0 +1,55 @@
+Step 1: Create a repository
+1.	Log in to GitHub and begin the process to create a new repository.
+2.	Enter a name for your repository (for example, hello-world).
+3.	Select the option to initialize the repository with a README file.
+4.	Finally, click Create repository.
+5.	There is no need to add any source code for now.
+
+Step 2: Set up CircleCI 
+•	Login to Circle CI https://app.circleci.com/  using GitHub Login
+•	Navigate to the CircleCI Projects page. If you created your new repository under an organization, you will need to select the organization name.
+
+•	You will be taken to the Projects dashboard. On the dashboard, select the project you want to set up (hello-world). 
+•	Select the option to commit a starter CI pipeline to a new branch, and click Set Up Project. This will create a file .circleci/config.yml at the root of your repository on a new branch called circleci-project-setup.
+
+
+Step 3: Your first pipeline
+•	On your project’s pipeline page, click the green Success button, which brings you to the workflow that ran (say-helloworkflow).
+
+
+•	Within this workflow, the pipeline ran one job, called say-hello. Click say-hello to see the steps in this job:
+o	Spin up environment
+o	Preparing environment variables
+o	Checkout code
+o	Say hello
+•	Now select the “say-hello-workflow”
+
+•	Select “say-hello” Job with a green tick
+
+•	Select Branch and option circleci-project-setup
+
+Step 4: Break your build
+•	In this section, you will edit the .circleci/config.yml file and see what happens if a build does not complete successfully.
+•	It is possible to edit files directly on GitHub.
+
+Scroll down and Commit your changes on GitHub
+
+•	After committing your changes, then return to the Projects page in CircleCI. You should see a new pipeline running… and it will fail! The Node orb runs some common Node tasks. Because you are working with an empty repository, running npm run test, a Node script, causes the configuration to fail. To fix this, you need to set up a Node project in your repository.
+
+Step 5: Use Workflows
+You do not have to use orbs to use CircleCI. The following example details how to create a custom configuration that also uses the workflow feature of CircleCI.
+•	Take a moment and read the comments in the code block below. Then, to see workflows in action, edit your .circleci/config.yml file and copy and paste the following text into it.
+
+
+You don’t need to write the comments which are the text after #
+
+•	Commit these changes to your repository and navigate back to the CircleCI Pipelines page. You should see your pipeline running.
+
+•	Click on the running pipeline to view the workflow you have created. You should see that two jobs ran (or are currently running!) concurrently.
+
+Step 6: Add some changes to use workspaces
+•	Each workflow has an associated workspace which can be used to transfer files to downstream jobs as the workflow progresses. You can use workspaces to pass along data that is unique to this run and which is needed for downstream jobs. Try updating config.yml to the following:
+
+•	Updated config.yml in GitHub file editor should be updated like this
+
+•	Finally your workflow with the jobs running should look like this
